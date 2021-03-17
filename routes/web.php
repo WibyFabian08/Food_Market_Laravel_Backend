@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\MidtransController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,8 @@ Route::get('/debug-sentry', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// relate midtrans status
+Route::get('midtrans/success', [MidtransController::class, 'success'])->name('suucess');
+Route::get('midtrans/unfinish', [MidtransController::class, 'unfinish'])->name('suucess');
+Route::get('midtrans/failed', [MidtransController::class, 'failed'])->name('suucess');
