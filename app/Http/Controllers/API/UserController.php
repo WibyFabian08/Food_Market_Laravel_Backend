@@ -105,12 +105,14 @@ class UserController extends Controller
     }
 
     public function updateProfile(Request $request) {
-        // get all data request
         $data = $request->all();
 
+        if(isset($request['password'])) {
+            $data['password'] = Hash::make($request->input('password'));
+        }
+        
         // get data user active
         $user = Auth::user();
-        $data['password'] = Hash::make($data['password']);
 
         // update data ke tabel user
         $user->update($data);

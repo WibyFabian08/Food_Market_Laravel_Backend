@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'houseNumber', 'phoneNumber', 'city', 'roles'
+        'name', 'email', 'password', 'address', 'houseNumber', 'phoneNumber', 'city', 'roles', 'profile_photo_path'
     ];
 
     /**
@@ -69,4 +69,5 @@ class User extends Authenticatable
     public function getUpdatedAtAttribute($value) {
         return Carbon::parse($value)->timestamp;
     }
+
 }
