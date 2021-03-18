@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
@@ -45,7 +46,7 @@ class UserController extends Controller
 
         $data= $request->all();
 
-        $data['profle_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
+        $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
 
         $data['password'] = Hash::make($data['password']);
 
@@ -91,15 +92,16 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        // if(isset($request['password'])) {
-        //     $data['password'] = Hash::make($request->input('password'));
-        // }
-
         $user = User::findOrFail($id);
 
-        // if($request->file('profile_photo_path')) {
-        //     $data['profle_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
-        // }
+        $image = $user->profile_photo_path;
+        
+        $path = 'storage/';
+        
+        if($request->file('profile_photo_path')) {
+            File::delete($path.$image);
+            $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
+        }
 
         $user->update($data);
 
@@ -116,7 +118,12 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        Storage::delete($user->profile_photo_path);
+        $data = $user->profile_photo_path;
+        
+        $path = 'storage/';
+
+        File::delete($path.$data);
+        
         $user->delete();
 
         return redirect()->route('user.index');

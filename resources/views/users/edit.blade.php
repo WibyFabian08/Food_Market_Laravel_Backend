@@ -30,15 +30,7 @@
                 </div>
                 <div class="mb-6 flex flex-wrap -mx-1">
                     <label for="profile_photo_path" class="block uppercase font-bold mb-2 text-gray-700 tracking-wide"> Image </label>
-                    <input type="file" disabled name="profile_photo_path" placeholder="Image" class="block appearance-none w-full bg-gray-100 border-none py-3 px-3 focus:bg-white focus:border-gray-500 border border-gray-300">
-                </div>
-                <div class="mb-6 flex flex-wrap -mx-1">
-                    <label for="password" class="block uppercase font-bold mb-2 text-gray-700 tracking-wide"> Password </label>
-                    <input type="password" disabled name="password" placeholder="Password" class="block appearance-none w-full bg-gray-100 border-none py-3 focus:bg-white focus:border-gray-500 border border-gray-300">
-                </div>
-                <div class="mb-6 flex flex-wrap -mx-1">
-                    <label for="password_confirmation" class="block uppercase font-bold mb-2 text-gray-700 tracking-wide"> password confirmation </label>
-                    <input type="password" disabled name="password_confirmation" placeholder="Password Confirmation" class="block appearance-none w-full bg-gray-100 border-none py-3 focus:bg-white focus:border-gray-500 border border-gray-300">
+                    <input type="file" value="{{ old('profile_photo_path') ?? $user->profile_photo_path}}" name="profile_photo_path" placeholder="Image" class="block appearance-none w-full bg-gray-100 border-none py-3 px-3 focus:bg-white focus:border-gray-500 border border-gray-300">
                 </div>
                 <div class="mb-6 flex flex-wrap -mx-1">
                     <label for="address" class="block uppercase font-bold mb-2 text-gray-700 tracking-wide"> address </label>
